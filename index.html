@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> My Portofolio | Portfolio</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    /* Root Variables */
+    :root {
+      --primary-color: rgb(243, 3, 171);
+      --secondary-color: #88166b;
+      --accent-color: #dc4fd5;
+      --light-color: #f8f9fa;
+      --dark-color: #343a40;
+      --text-color: #212529;
+      --transition: all 0.3s ease-in-out;
+    }
+
+    /* Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: #f5f5f5;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--secondary-color);
+      transition: var(--transition);
+    }
+
+    a:hover {
+      color: var(--accent-color);
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      color: var(--secondary-color);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
+    }
+
+    .section-title:after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 3px;
+      background-color: var(--accent-color);
+      margin: 15px auto 0;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--primary-color);
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 600;
+    }
+
+    .btn:hover {
+      background-color: var(--secondary-color);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Header */
+    header {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-links li {
+      margin-left: 30px;
+    }
+
+    .nav-links a {
+      color: var(--dark-color);
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-color);
+    }
+
+    /* Mobile Nav */
+    .mobile-menu-btn {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(74, 111, 165, 0.9), rgba(224, 182, 215, 0.9)), url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97') no-repeat center center/cover;
+      color: white;
+      text-align: center;
+      padding: 150px 0 100px;
+      margin-top: 70px;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .hero-img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid white;
+      margin-bottom: 20px;
+    }
+
+    /* About Section */
+    .about {
+      background-color: white;
+    }
+
+    .about-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .about-text {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .skills {
+      margin-top: 20px;
+    }
+
+    .skill-item {
+      margin-bottom: 15px;
+    }
+
+    .skill-name {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .skill-bar {
+      height: 10px;
+      background-color: #e9ecef;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .skill-progress {
+      height: 100%;
+      background-color: var(--primary-color);
+      border-radius: 5px;
+    }
+
+    /* Education Section */
+    .education {
+      background-color: #f8f9fa;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      background-color: var(--primary-color);
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -1px;
+    }
+
+    .timeline-item {
+      padding: 10px 50px;
+      position: relative;
+      width: 50%;
+      box-sizing: border-box;
+    }
+
+    .timeline-item:nth-child(odd) {
+      left: 0;
+    }
+
+    .timeline-item:nth-child(even) {
+      left: 50%;
+    }
+
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: white;
+      border: 4px solid var(--primary-color);
+      border-radius: 50%;
+      top: 15px;
+      z-index: 1;
+    }
+
+    .timeline-item:nth-child(odd)::after {
+      right: -10px;
+    }
+
+    .timeline-item:nth-child(even)::after {
+      left: -10px;
+    }
+
+    .timeline-content {
+      padding: 20px;
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .timeline-date {
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    /* Projects Section */
+    .projects {
+      background-color: white;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .project-card {
+      background-color: white;
+      border-radius: 5px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .project-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .project-info {
+      padding: 20px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .project-tag {
+      background-color: #e9ecef;
+      color: var(--dark-color);
+      padding: 5px 10px;
+      border-radius: 3px;
+      font-size: 0.8rem;
+      margin-right: 5px;
+      margin-bottom: 5px;
+    }
+
+    /* Contact Section */
+    .contact {
+      background-color: #f8f9fa;
+    }
+
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+
+    .contact-item {
+      text-align: center;
+      padding: 30px;
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+    }
+
+    .contact-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-icon {
+      font-size: 2rem;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+    }
+
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ced4da;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary-color);
+      outline: none;
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 150px;
+    }
+
+    /* Social Media */
+    .social-links {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: var(--primary-color);
+      color: white;
+      border-radius: 50%;
+      margin: 0 10px;
+      transition: var(--transition);
+    }
+
+    .social-link:hover {
+      background-color: var(--secondary-color);
+      transform: translateY(-3px);
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--dark-color);
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .section {
+        padding: 60px 0;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .timeline::after {
+        left: 31px;
+      }
+
+      .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+      }
+
+      .timeline-item:nth-child(even) {
+        left: 0;
+      }
+
+      .timeline-item::after {
+        left: 21px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        background-color: white;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        flex-direction: column;
+        text-align: center;
+        transition: var(--transition);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        padding: 20px 0;
+      }
+
+      .nav-links.active {
+        left: 0;
+      }
+
+      .nav-links li {
+        margin: 15px 0;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .hero {
+        padding: 120px 0 80px;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .section-title {
+        margin-bottom: 30px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero-img {
+        width: 150px;
+        height: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav class="navbar">
+        <a href="#" class="logo">NDA</a>
+        <div class="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <img src="ggg.jpg" alt="PORTOFOLIO" class="hero-img" style="width: 200px; height: auto; border-radius: 50%; display: block; margin: 0 auto;">
+        <h1>Niken Dewi Anggraini</h1>
+        <p>Information Systems Student at UPN Veteran East Java</p>
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/niken-dewi-anggraini-a63702279?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" class="social-link" target="_blank">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://www.instagram.com/nikengr?igsh=MThocmphaDhsaGZteQ==" class="social-link" target="_blank">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.tiktok.com/@kndgrr?_t=ZS-8uLb2fDVsxj&_r=1" class="social-link" target="_blank">
+            <i class="fab fa-tiktok"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+  <!-- About Section -->
+  <section id="about" class="about section">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>Hello! I'm Niken Dewi Anggraini, currently studying Information Systems at UPN Veteran East Java. I'm passionate about backend development and creating efficient, scalable systems.</p>
+          <p>My hobbies are traveling and taking photos, I also like designing,
+            I also look for or experience new things. Currently I am learning to deepen 
+            my design hobby by taking part in Figma BootCamp.</p>
+           
+            <section id="skill" class="skill section">
+                <div class="container"></div>
+            <h2 class="section-title">Skill</h2>
+          <div class="skills-container">
+            <div class="skill-item">
+                <span class="skill-name">Desain</span>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 90%"></div>
+                </div>
+            </div>
+            <div class="skill-item">
+                <span class="skill-name">Multitasking</span>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 85%"></div>
+                </div>
+            </div>  
+            <div class="skill-item">
+                <span class="skill-name">Teamwork</span>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 80%"></div>
+                    </div>
+            </div>
+            <div class="skill-item">
+                <span class="skill-name">Problem-solving</span>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 80%"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education" class="education section">
+    <div class="container">
+      <h2 class="section-title">Education</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3>UPN Veteran East Java</h3>
+            <p class="timeline-date">2023 - Present</p>
+            <p>Information Systems</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3> SMA KEMALA BHAYANGKARI 1 SURABAYA</h3>
+            <p class="timeline-date">2020 - 2023</p>
+            <p>High School Diploma</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3>SMP KEMALA BHAYANGKARI 1 SURABAYA</h3>
+            <p class="timeline-date">2017 - 2019</p>
+            <p>Junior High School</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+        <div class="timeline-content">
+          <h3>SDN Negeri Trosobo II </h3>
+          <p class="timeline-date">2011-2017</p>
+    </div>
+  </section>
+
+  <!-- Certifications Section -->
+  <section class="section" style="background-color: white;">
+    <div class="container">
+      <h2 class="section-title">Experience</h2>
+      <div class="table-responsive">
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+          <thead>
+            <tr style="background-color: var(--primary-color); color: white;">
+              <th style="padding: 12px 15px; text-align: left; border-bottom: 1px solid #ddd;">#</th>
+              <th style="padding: 12px 15px; text-align: left; border-bottom: 1px solid #ddd;">Name</th>
+              <th style="padding: 12px 15px; text-align: left; border-bottom: 1px solid #ddd;">Organizer</th>
+              <th style="padding: 12px 15px; text-align: left; border-bottom: 1px solid #ddd;">Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 12px 15px; border-bottom: 1px solid #ddd;">1</td>
+              <td style="padding: 12px 15px; border-bottom: 1px solid #ddd;">Panitia Fasilkom Fest</td>
+              <td style="padding: 12px 15px; border-bottom: 1px solid #ddd;">Security and Licensing division</td>
+              <td style="padding: 12px 15px; border-bottom: 1px solid #ddd;">January 4, 2024</td>
+              <td style="padding: 12px 15px; border-bottom: 1px solid #ddd;">
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 12px 15px; border-bottom: 1px solid #ddd;">2</td>
+              <td style="padding: 12px 15px; border-bottom: 1px solid #ddd;">Panitia Maba Cup x COD</td>
+              <td style="padding: 12px 15px; border-bottom: 1px solid #ddd;">health division</td>
+              <td style="padding: 12px 15px; border-bottom: 1px solid #ddd;">February 8, 2024</td>
+              <td style="padding: 12px 15px; border-bottom: 1px solid #ddd;">
+              </td>
+            </tr>
+            <tr>
+                <td style="padding: 12px 15px; border-bottom: 1px solid #ddd;">3</td>
+                <td style="padding: 12px 15px; border-bottom: 1px solid #ddd;">Figma BoothCamp</td>
+                <td style="padding: 12px 15px; border-bottom: 1px solid #ddd;">Belajar figma dari pemula</td>
+                <td style="padding: 12px 15px; border-bottom: 1px solid #ddd;">February 18, 2025</td>
+                <td style="padding: 12px 15px; border-bottom: 1px solid #ddd;">
+                </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact section">
+    <div class="container">
+      <h2 class="section-title">Contact Me</h2>
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h3>Email</h3>
+          <p>nikendewiagrr@gmail.com</p>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <h3>Phone</h3>
+          <p>+62 881 6967 473</p>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <h3>Location</h3>
+          <p>Surabaya, East Java, Indonesia</p>
+        </div>
+      </div>
+      <div class="contact-form">
+        <form>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Your Name" required>
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-control" placeholder="Your Email" required>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Subject" required>
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" placeholder="Your Message" required></textarea>
+          </div>
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Niken Dewi Anggraini. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Mobile Menu Toggle
+    document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+      document.querySelector('.nav-links').classList.toggle('active');
+    });
+
+    // Smooth Scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+        
+        // Close mobile menu after clicking a link
+        document.querySelector('.nav-links').classList.remove('active');
+      });
+    });
+
+    // Scroll To Top Button Visibility
+    window.addEventListener('scroll', function() {
+      if (document.querySelector('#scrollToTop')) {
+        if (window.pageYOffset > 300) {
+          document.querySelector('#scrollToTop').style.display = "block";
+        } else {
+          document.querySelector('#scrollToTop').style.display = "none";
+        }
+      }
+    });
+  </script>
+</body>
+</html>
